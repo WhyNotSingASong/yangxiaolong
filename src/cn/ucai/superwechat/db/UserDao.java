@@ -13,11 +13,10 @@
  */
 package cn.ucai.superwechat.db;
 
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 
+import java.util.List;
+import java.util.Map;
 
 import cn.ucai.superwechat.domain.RobotUser;
 import cn.ucai.superwechat.domain.User;
@@ -36,7 +35,8 @@ public class UserDao {
 	public static final String ROBOT_COLUMN_NAME_ID = "username";
 	public static final String ROBOT_COLUMN_NAME_NICK = "nick";
 	public static final String ROBOT_COLUMN_NAME_AVATAR = "avatar";
-	
+
+
 	
 	public UserDao(Context context) {
 	    DemoDBManager.getInstance().onInit(context);

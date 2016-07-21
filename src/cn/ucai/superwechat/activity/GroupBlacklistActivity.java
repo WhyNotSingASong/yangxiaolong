@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.easemob.chat.EMGroupManager;
-import com.easemob.chatuidemo.R;
+import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EaseMobException;
 
 import android.content.Context;

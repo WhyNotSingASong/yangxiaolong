@@ -16,9 +16,7 @@ package cn.ucai.superwechat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,7 +30,7 @@ import com.easemob.EMCallBack;
 import com.easemob.EMChatRoomChangeListener;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
-import com.easemob.chatuidemo.R;
+import cn.ucai.superwechat.R;
 
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.applib.model.HXNotifier;

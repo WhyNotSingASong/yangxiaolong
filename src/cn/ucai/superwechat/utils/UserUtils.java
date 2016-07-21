@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import com.easemob.chatuidemo.R;
+import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.domain.User;
 import com.squareup.picasso.Picasso;
 

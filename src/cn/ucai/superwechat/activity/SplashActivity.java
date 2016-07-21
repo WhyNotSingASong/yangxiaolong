@@ -11,14 +11,16 @@ import android.widget.TextView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
+
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import com.easemob.chatuidemo.R;
+import cn.ucai.superwechat.R;
 
 /**
  * 开屏页
  *
  */
 public class SplashActivity extends BaseActivity {
+	private static final String TAG = SplashActivity.class.getSimpleName();
 	private RelativeLayout rootLayout;
 	private TextView versionText;
 	
@@ -51,6 +53,17 @@ public class SplashActivity extends BaseActivity {
 					long start = System.currentTimeMillis();
 					EMGroupManager.getInstance().loadAllGroups();
 					EMChatManager.getInstance().loadAllConversations();
+
+//					String username = SuperWeChatApplication.getInstance().getUserName();
+//					Log.e(TAG,"username"+username);
+//					UserDao dao = new UserDao(SplashActivity.this);//这是什么意思
+//					UserAvatar user = dao.getAvatar(username);
+//					Log.e(TAG,"user="+user);
+//					SuperWeChatApplication.getInstance().setUser(user);
+//					SuperWeChatApplication.currentUserNick = user.getMUserNick();
+//					new DownloadContactListTask(SplashActivity.this,username).execute;
+
+
 					long costTime = System.currentTimeMillis() - start;
 					//等待sleeptime时长
 					if (sleepTime - costTime > 0) {

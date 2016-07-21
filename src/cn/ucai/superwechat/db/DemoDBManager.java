@@ -1,22 +1,23 @@
 package cn.ucai.superwechat.db;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.easemob.util.HanziToPinyin;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
 import cn.ucai.superwechat.domain.RobotUser;
 import cn.ucai.superwechat.domain.User;
-import com.easemob.util.HanziToPinyin;
 
 public class DemoDBManager {
     static private DemoDBManager dbMgr = new DemoDBManager();
@@ -345,7 +346,16 @@ public class DemoDBManager {
 		}
 		return users;
 	}
-    
-    
+
+//    synchronized private UserAvatar getAvatar(String username){
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("select " + "* from " + UserDao.USER_COLUMN_NAME_NICK,new String[]{username});
+//        UserAvatar user= null;
+//        if(cursor.moveToNext()){
+//            user = new UserAvatar();
+//            user.setMUserName(username);
+//            user.setMUserNick(cursor.getString(cursor.getColumnIndex(UserDao.USER_C)));
+//            return null;
+//        }
     
 }

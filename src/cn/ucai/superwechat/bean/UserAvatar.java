@@ -1,8 +1,6 @@
 package cn.ucai.superwechat.bean;
 
-import java.io.Serializable;
-
-public class UserAvatar implements Serializable {
+public class UserAvatar {
 	private String muserName;
 //	private String muserPassword;
 	private String muserNick;

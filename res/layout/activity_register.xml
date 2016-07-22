@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eff2f6"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/layout_register">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,12 +12,13 @@
         android:layout_weight="1" >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/mobile"
             android:layout_centerInParent="true"
             android:text="@string/app_name"
-            android:gravity="center"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
             android:textColor="#000"/>
     </RelativeLayout>
 
@@ -82,7 +84,6 @@
                 android:layout_toLeftOf="@id/iv_nick"
                 android:background="@null"
                 android:hint="@string/nickname"
-                android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
                 android:textSize="18sp" />
@@ -150,6 +151,7 @@
                 android:textSize="18sp" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/layout_register_avatar"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginLeft="20dp"
@@ -167,14 +169,16 @@
                 android:src="@drawable/default_avatar" />
 
             <EditText
-                android:id="@+id/avatar"
+                android:id="@+id/etAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/iv_avatar"
                 android:background="@null"
                 android:hint="@string/dl_title_upload_photo"
-                android:inputType="textPassword"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:enabled="false"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
                 android:textSize="18sp" />
@@ -204,6 +208,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
             <Button
+                android:id="@+id/btnRegister"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,7 +216,6 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_login_bg"
-                android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/register"

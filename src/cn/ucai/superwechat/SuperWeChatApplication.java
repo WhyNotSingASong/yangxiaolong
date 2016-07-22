@@ -18,7 +18,7 @@ import android.content.Context;
 
 import com.easemob.EMCallBack;
 
-public class DemoApplication extends Application {
+public class SuperWeChatApplication extends Application {
 
 	public static Context applicationContext;
 	private static DemoApplication instance;

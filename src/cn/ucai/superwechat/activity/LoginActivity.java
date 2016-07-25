@@ -188,8 +188,10 @@ public class LoginActivity extends BaseActivity {
 						if(result!=null&&result.isRetMsg()){
 							UserAvatar user = (UserAvatar) result.getRetData();
 							Log.e(TAG,"user="+user);
-							saveUserToDB(user);
-							LoginSuccess();
+							if(user!=null){
+								saveUserToDB(user);
+								LoginSuccess(user);
+							}
 						}else {
 							pd.dismiss();
 							Toast.makeText(getApplicationContext(),R.string.Login_failed + Utils.getResourceString(LoginActivity.this,result.getRetCode()), Toast.LENGTH_SHORT).show();
@@ -214,10 +216,12 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 
-	private void LoginSuccess() {
+	private void LoginSuccess(UserAvatar user) {
 		// 登陆成功，保存用户名密码
 		SuperWeChatApplication.getInstance().setUserName(currentUsername);
-		SuperWeChatApplication.getInstance().setPassword(currentPassword);
+		SuperWeChatApplication.getInstance().setPassword(currentPassword);//现版本不规范了，不保存密码了
+		SuperWeChatApplication.getInstance().setUser(user);
+		SuperWeChatApplication.currentUserNick = user.getMUserNick();
 
 		try {
 			// ** 第一次登录或者之前logout后再登录，加载所有本地群和回话

@@ -46,6 +46,7 @@ import cn.ucai.superwechat.data.OkHttpUtils2;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.User;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.Utils;
 
 /**
  * 登陆页面
@@ -180,15 +181,12 @@ public class LoginActivity extends BaseActivity {
 				.execute(new OkHttpUtils2.OnCompleteListener<Result>() {
 					@Override
 					public void onSuccess(Result result) {
-						Log.i("main","出问题了1");
 						Log.e(TAG,"result="+result);
 						if(result!=null&&result.isRetMsg()){
-							Log.i("main","出问题了");
 							LoginSuccess();
-							Log.i("main","出问题了2");
 						}else {
 							pd.dismiss();
-							Toast.makeText(getApplicationContext(),R.string.Login_failed, Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(),R.string.Login_failed + Utils.getResourceString(LoginActivity.this,result.getRetCode()), Toast.LENGTH_SHORT).show();
 						}
 					}
 

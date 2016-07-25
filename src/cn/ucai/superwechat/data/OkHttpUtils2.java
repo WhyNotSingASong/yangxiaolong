@@ -262,8 +262,8 @@ public class OkHttpUtils2<T> {
 //        Log.e("okhttp","1 murl="+ mUrl.toString());
         return this;
     }
-
-    public OkHttpUtils2<T> addFile(File file) {
+//多个文件是使用
+    public OkHttpUtils2<T> addFile2(File file) {
         if (mUrl == null) {
             return this;
         }
@@ -273,6 +273,13 @@ public class OkHttpUtils2<T> {
                 .type(MultipartBuilder.FORM)
                 .addPart(Headers.of("Content-Disposition","form-data; name=\"file\";filename=\""+file.getName()+"\""), fileBody)
                 .build();
+        return this;
+    }
+    public OkHttpUtils2<T> addFile(File file) {
+        if (mUrl ==null){
+            return this;
+        }
+        mFileBody = RequestBody.create(null,file);
         return this;
     }
 

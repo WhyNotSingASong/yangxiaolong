@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.ucai.superwechat.Constant;
+import cn.ucai.superwechat.bean.UserAvatar;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
 import cn.ucai.superwechat.domain.RobotUser;
@@ -357,5 +358,23 @@ public class DemoDBManager {
 //            user.setMUserNick(cursor.getString(cursor.getColumnIndex(UserDao.USER_C)));
 //            return null;
 //        }
+    /**
+     * 保存当前登录用户
+     * @param user
+     */
+    synchronized public void saveUserAvatar(UserAvatar user){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserDao.USER_COLUMN_NAME_ID, user.getMUserName());
+        values.put(UserDao.USER_COLUMN_NAME_NICK, user.getMUserNick());
+        values.put(UserDao.USER_COLUMN_NAME_AVATAR, user.getMAvatarId());
+        values.put(UserDao.USER_COLUMN_AVATAR_PATH, user.getMAvatarPath());
+        values.put(UserDao.USER_COLUMN_AVATAR_TYPE, user.getMAvatarType());
+        values.put(UserDao.USER_COLUMN_AVATAR_LAST_UPDATE_TIME,user.getMAvatarLastUpdateTime());
+
+        if(db.isOpen()){
+            db.replace(UserDao.USER_TABLE_NAME, null, values);
+        }
+    }
     
 }

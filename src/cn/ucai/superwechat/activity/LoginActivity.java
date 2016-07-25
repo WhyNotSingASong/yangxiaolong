@@ -173,15 +173,17 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void LoginAppServer() {
-		final OkHttpUtils2<Result> utils = new OkHttpUtils2<Result>();
+		final OkHttpUtils2<String> utils = new OkHttpUtils2<String>();
 		Log.i("main","出问题了3");
 		utils.setRequestUrl(I.REQUEST_LOGIN)
 				.addParam(I.User.USER_NAME,currentUsername)
 				.addParam(I.User.PASSWORD,currentPassword)
-				.targetClass(Result.class)
-				.execute(new OkHttpUtils2.OnCompleteListener<Result>() {
+				.targetClass(String.class)
+				.execute(new OkHttpUtils2.OnCompleteListener<String>() {
 					@Override
-					public void onSuccess(Result result) {
+					public void onSuccess(String s) {
+						Log.e(TAG,"s="+s);
+						Result result = Utils.getResultFromJson(s,UserAvatar.class);
 						Log.e(TAG,"result="+result);
 						if(result!=null&&result.isRetMsg()){
 							UserAvatar user = (UserAvatar) result.getRetData();

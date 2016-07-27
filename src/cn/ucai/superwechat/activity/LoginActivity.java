@@ -46,6 +46,7 @@ import cn.ucai.superwechat.bean.UserAvatar;
 import cn.ucai.superwechat.data.OkHttpUtils2;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.User;
+import cn.ucai.superwechat.task.DownloadContactListTask;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.Utils;
 
@@ -222,6 +223,8 @@ public class LoginActivity extends BaseActivity {
 		SuperWeChatApplication.getInstance().setPassword(currentPassword);//现版本不规范了，不保存密码了
 		SuperWeChatApplication.getInstance().setUser(user);
 		SuperWeChatApplication.currentUserNick = user.getMUserNick();
+
+		new DownloadContactListTask(LoginActivity.this,currentUsername).execute();
 
 		try {
 			// ** 第一次登录或者之前logout后再登录，加载所有本地群和回话

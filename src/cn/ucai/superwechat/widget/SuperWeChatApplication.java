@@ -18,7 +18,6 @@ import android.content.Context;
 
 import com.easemob.EMCallBack;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.ucai.superwechat.DemoHXSDKHelper;
@@ -90,7 +89,7 @@ public class SuperWeChatApplication extends Application {
 	/**
 	 * 设置用户名
 	 *
-	 * @param user
+	 * @param username
 	 */
 	public void setUserName(String username) {
 	    hxSDKHelper.setHXId(username);

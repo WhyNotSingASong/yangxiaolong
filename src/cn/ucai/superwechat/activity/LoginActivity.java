@@ -292,6 +292,7 @@ public class LoginActivity extends BaseActivity {
 		// 存入db
 		UserDao dao = new UserDao(LoginActivity.this);
 		List<User> users = new ArrayList<User>(userlist.values());
+
 		dao.saveContactList(users);
 	}
 	

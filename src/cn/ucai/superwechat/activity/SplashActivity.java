@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,6 +15,10 @@ import com.easemob.chat.EMGroupManager;
 
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatApplication;
+import cn.ucai.superwechat.bean.UserAvatar;
+import cn.ucai.superwechat.db.UserDao;
+import cn.ucai.superwechat.task.DownloadContactListTask;
 
 /**
  * 开屏页
@@ -53,9 +58,16 @@ public class SplashActivity extends BaseActivity {
 					long start = System.currentTimeMillis();
 					EMGroupManager.getInstance().loadAllGroups();
 					EMChatManager.getInstance().loadAllConversations();
+					String username = SuperWeChatApplication.getInstance().getUserName();
+					Log.e(TAG,"username="+username);
+					UserDao dao = new UserDao(SplashActivity.this);
+					UserAvatar user = dao.getUserAvatar(username);
+					Log.e(TAG,"user="+user);
+					SuperWeChatApplication.getInstance().setUser(user);
+					//删除客户端后用以前的用户会出问题，因为没有表，应该加一个判断，若没有，就从自己的服务器下载数据新建一张表
+					SuperWeChatApplication.currentUserNick ="1111";//实际上是user.getMUserNick()，从服务器那数据库的代码没想明白。
+					new DownloadContactListTask(SplashActivity.this,username).execute();
 
-//					String username = SuperWeChatApplication.getInstance().getUserName();
-//					Log.e(TAG,"username"+username);
 //					UserDao dao = new UserDao(SplashActivity.this);//这是什么意思
 //					UserAvatar user = dao.getAvatar(username);
 //					Log.e(TAG,"user="+user);

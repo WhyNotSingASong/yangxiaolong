@@ -13,12 +13,6 @@
  */
 package cn.ucai.superwechat.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,7 +38,6 @@ import com.easemob.EMEventListener;
 import com.easemob.EMGroupChangeListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.EMValueCallBack;
-import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactListener;
 import com.easemob.chat.EMContactManager;
@@ -56,19 +49,27 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.EMMessage.Type;
 import com.easemob.chat.TextMessageBody;
+import com.easemob.util.EMLog;
+import com.easemob.util.HanziToPinyin;
+import com.easemob.util.NetUtils;
+import com.umeng.analytics.MobclickAgent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
 import cn.ucai.superwechat.domain.User;
 import cn.ucai.superwechat.utils.CommonUtils;
-import com.easemob.util.EMLog;
-import com.easemob.util.HanziToPinyin;
-import com.easemob.util.NetUtils;
-import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends BaseActivity implements EMEventListener {
 
@@ -548,7 +549,7 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 					String st10 = getResources().getString(R.string.have_you_removed);
 					if (ChatActivity.activityInstance != null
 							&& usernameList.contains(ChatActivity.activityInstance.getToChatUsername())) {
-						Toast.makeText(MainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, 1)
+						Toast.makeText(MainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
 								.show();
 						ChatActivity.activityInstance.finish();
 					}

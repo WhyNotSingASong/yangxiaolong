@@ -374,6 +374,7 @@ public class DemoDBManager {
 
         if(db.isOpen()){
             db.replace(UserDao.USER_TABLE_NAME, null, values);
+            //此表中永远只有一个当前用户的信息
         }
     }
 
@@ -389,6 +390,7 @@ public class DemoDBManager {
             user.setMAvatarType(cursor.getInt(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_TYPE)));
             user.setMAvatarPath(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_PATH)));
             user.setMAvatarLastUpdateTime(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_LAST_UPDATE_TIME)));
+            return user;
         }
         return user;
     }

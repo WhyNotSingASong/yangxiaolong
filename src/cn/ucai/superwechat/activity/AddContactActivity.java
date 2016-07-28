@@ -128,7 +128,7 @@ public class AddContactActivity extends BaseActivity{
 
 						@Override
 						public void onError(String error) {
-
+								Log.e(TAG,"error="+error);
 						}
 					});
 			

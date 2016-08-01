@@ -13,17 +13,11 @@
  */
 package cn.ucai.superwechat.activity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -49,19 +43,27 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import cn.ucai.superwechat.applib.controller.HXSDKHelper;
-
 import com.easemob.chat.EMContactManager;
+import com.easemob.exceptions.EaseMobException;
+import com.easemob.util.EMLog;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.adapter.ContactAdapter;
+import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.User;
 import cn.ucai.superwechat.widget.Sidebar;
-import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.EMLog;
 
 /**
  * 联系人列表页
@@ -268,6 +270,7 @@ public class ContactlistFragment extends Fragment {
 		} else {
 			progressBar.setVisibility(View.GONE);
 		}
+		updateContactListener();
 	}
 
 	@Override
@@ -498,5 +501,24 @@ public class ContactlistFragment extends Fragment {
 	    	outState.putBoolean(Constant.ACCOUNT_REMOVED, true);
 	    }
 	    
+	}
+	class updateContactReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			adapter.notifyDataSetChanged();
+		}
+	}
+	updateContactReceiver mUpdateContactReceiver;
+	private void updateContactListener(){
+		mUpdateContactReceiver = new updateContactReceiver();
+		IntentFilter filter = new IntentFilter("update_contact_list");
+		getActivity().registerReceiver(mUpdateContactReceiver,filter);
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		getActivity().unregisterReceiver(mUpdateContactReceiver);
 	}
 }

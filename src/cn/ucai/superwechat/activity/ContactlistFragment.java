@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -57,9 +58,14 @@ import java.util.Map.Entry;
 
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.adapter.ContactAdapter;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.bean.UserAvatar;
+import cn.ucai.superwechat.data.OkHttpUtils2;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.User;
@@ -361,6 +367,32 @@ public class ContactlistFragment extends Fragment {
 
 			}
 		}).start();
+			String currentUsername = SuperWeChatApplication.getInstance().getUserName();
+			final OkHttpUtils2<Result> utils = new OkHttpUtils2<Result>();
+			utils.setRequestUrl(I.REQUEST_DELETE_CONTACT)
+					.addParam(I.Contact.USER_NAME, currentUsername)
+					.addParam(I.Contact.CU_NAME, tobeDeleteUser.getUsername())
+					.targetClass(Result.class)
+					.execute(new OkHttpUtils2.OnCompleteListener<Result>() {
+						@Override
+						public void onSuccess(Result result) {
+							Log.e(TAG,"result="+result);
+							if(result.isRetMsg()){
+								Log.e(TAG,"result remove user...");
+								((DemoHXSDKHelper) HXSDKHelper.getInstance()).getContactList().remove(tobeDeleteUser.getUsername());
+								UserAvatar u = SuperWeChatApplication.getInstance().getUserMap().get(tobeDeleteUser.getUsername());
+								SuperWeChatApplication.getInstance().getUserMap().remove(u);
+								SuperWeChatApplication.getInstance().getUserList().remove(u);
+								getActivity().sendStickyBroadcast(new Intent("update_contact_list"));
+							}
+
+						}
+
+						@Override
+						public void onError(String error) {
+							Log.e(TAG,error);
+						}
+					});
 
 	}
 

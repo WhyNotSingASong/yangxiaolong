@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.easemob.util.HanziToPinyin;
 
@@ -21,6 +22,8 @@ import cn.ucai.superwechat.domain.RobotUser;
 import cn.ucai.superwechat.domain.User;
 
 public class DemoDBManager {
+    private final static String TAG =DemoDBManager.class.getSimpleName();
+
     static private DemoDBManager dbMgr = new DemoDBManager();
     private DbOpenHelper dbHelper;
     
@@ -29,6 +32,7 @@ public class DemoDBManager {
     }
     
     public static synchronized DemoDBManager getInstance(){
+
         return dbMgr;
     }
     
@@ -106,6 +110,7 @@ public class DemoDBManager {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         if(db.isOpen()){
             db.delete(UserDao.TABLE_NAME, UserDao.COLUMN_NAME_ID + " = ?", new String[]{username});
+            Log.e(TAG,"deleteContact");
         }
     }
     

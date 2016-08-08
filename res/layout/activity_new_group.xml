@@ -71,11 +71,42 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:textSize="18sp" />
-    
-    
+
+    <RelativeLayout
+        android:id="@+id/layout_register_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_normal_shape">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/default_avatar" />
+
+        <EditText
+            android:id="@+id/etAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_avatar"
+            android:background="@null"
+            android:hint="@string/dl_title_upload_photo"
+            android:cursorVisible="false"
+            android:clickable="false"
+            android:enabled="false"
+            android:singleLine="true"
+            android:textSize="18sp" />
+    </RelativeLayout>
     <LinearLayout 
         android:layout_width="match_parent"
-       android:layout_height="39dp"
+        android:layout_height="39dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -91,7 +122,8 @@
             android:textSize="18sp"
             android:layout_weight="1"
             />
-        
+
+
         <CheckBox 
             android:id="@+id/cb_public"
             android:layout_width="wrap_content"
@@ -102,7 +134,7 @@
             />
         
     </LinearLayout>
-    
+
     <LinearLayout 
         android:id="@+id/ll_open_invite"
         android:layout_width="match_parent"

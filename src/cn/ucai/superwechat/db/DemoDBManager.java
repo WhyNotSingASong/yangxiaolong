@@ -345,7 +345,6 @@ public class DemoDBManager {
 						user.setHeader("#");
 					}
 				}
-				
 				users.put(username, user);
 			}
 			cursor.close();
@@ -398,5 +397,15 @@ public class DemoDBManager {
             return user;
         }
         return user;
+    }
+
+    synchronized public void updateUserNick(UserAvatar user) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserDao.USER_COLUMN_NAME_NICK,user.getMUserNick());
+        if(db.isOpen()){
+            db.update(UserDao.TABLE_NAME, values,UserDao.USER_COLUMN_NAME_ID + " = ?", new String[]{user.getMUserName()});
+            Log.e(TAG,"change success");
+        }
     }
 }

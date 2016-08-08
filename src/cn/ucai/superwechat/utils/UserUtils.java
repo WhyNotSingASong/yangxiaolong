@@ -54,15 +54,16 @@ public class UserUtils {
 	 * @param username
 	 */
 	public static void setAppUserAvatar(Context context, String username, ImageView imageView){
-		String path =getAppAvatarPath(username);
-		if(path != null && username != null){
+		String path ="";
+		if(username != null){
+			path =getUserAvatarPath(username);
 			Log.e(TAG,"path="+path);
 			Picasso.with(context).load(path).placeholder(R.drawable.default_avatar).into(imageView);
 		}else{
 			Picasso.with(context).load(R.drawable.default_avatar).into(imageView);
 		}
 	}
-	public static String getAppAvatarPath(String username){
+	public static String getUserAvatarPath(String username){
 		StringBuilder path = new StringBuilder(I.SERVER_ROOT);
 		path.append(I.QUESTION).append(I.KEY_REQUEST)
 				.append(I.EQUALS).append(I.REQUEST_DOWNLOAD_AVATAR)

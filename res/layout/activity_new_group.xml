@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eee"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/layout_group">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -97,7 +98,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/iv_avatar"
             android:background="@null"
-            android:hint="@string/dl_title_upload_photo"
+            android:hint="群头像"
             android:cursorVisible="false"
             android:clickable="false"
             android:enabled="false"

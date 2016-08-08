@@ -88,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dip"
             android:src="@drawable/default_avatar" />
 
         <EditText
@@ -99,6 +98,7 @@
             android:layout_toLeftOf="@id/iv_avatar"
             android:background="@null"
             android:hint="群头像"
+            android:paddingLeft="5dp"
             android:cursorVisible="false"
             android:clickable="false"
             android:enabled="false"
